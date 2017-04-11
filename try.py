@@ -12,7 +12,7 @@ def main():
     fr=open(INFILE_LIST)
     arrayOLines=fr.readlines()
     m=len(arrayOLines)/2
-    print m
+    #print m*2
         
     scorelist=[]    
       
@@ -41,16 +41,24 @@ def main():
             tid=idlist.index(info)            
             scorelist[tid].append(temp1)             
                 
-    print idlist  
-    print scorelist
-    print "the largest two elements of each id "    
+    #print idlist  
+    #print scorelist
+    #print "the largest two elements of each id "    
     
     topk=[]
     for id in idlist:
-        temp=heapq.nlargest(2, scorelist[idlist.index(id)], key=lambda s: s['score'])
+        temp=heapq.nlargest(50, scorelist[idlist.index(id)], key=lambda s: s['score'])
         topk.append(temp)
     
-    print topk
+    #print topk
+    for id in topk:
+        for i in range(len(id)):
+            print id[i]['name']
+            print id[i]['score']
+            
+            
+        
+        
     
     # then made some choices between the names of the figures.
     
