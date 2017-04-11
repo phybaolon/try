@@ -30,10 +30,11 @@ def main():
         scoresplit=scoreline.strip().split(' ')
         scorfo=float(scoresplit[1])
         
-        temp1={}
+        temp1=()
         #temp1['name']=prop.split('_')[0] 
         #temp1['name']=infoline.strip()           
-        temp1[prop.split('_')[0]]=scorfo
+        temp1[0]=infoline.strip() 
+        temp1[1]=scorfo
         
         if info not in idlist:
             idlist.append(info)
@@ -44,23 +45,22 @@ def main():
             scorelist[tid].append(temp1)               
     
     topk=[]
-    # firstly, get 50 elements out of the dict
+    # firstly, get top 50 elements 
     for id in idlist:
         idnum=idlist.index(id)
         temp=[]
         for i in range(0,50):
             temp.append(scorelist[idnum][i])
-        temp1=sorted(temp.iteritems(),key=operator.itemgetter(1),reverse=True)
+        temp1=sorted(temp,key=lambda a_tuple:a_tuple[1],reverse=True)
         for j in range(51,len(scorelist[idnum])):
-            tetdict=scorelist[idnum][j]
-            tet=tetdict.values()[0]
-            if tet>temp1[0][1]:
-                temp1.insert(0, (tetdict['name'],tetdict['score']))
-            elif ((tet>temp1[49][1]) and (tet<temp1[0][1])):
+            tet=scorelist[idnum][j]            
+            if tet[1]>temp1[0][1]:
+                temp1.insert(0, tet)
+            elif ((tet[1]>temp1[49][1]) and (tet[1]<temp1[0][1])):
                 inser=48
                 while inser>0:                                       
                     if temp1[inser][1]>tet:
-                        temp1.insert(inser+1,(tetdict['name'],tetdict['score']))
+                        temp1.insert(inser+1,tet)
                         continue
                     inser=inser-1                 
         topk.append(temp1)              
@@ -70,12 +70,13 @@ def main():
     for id in topk:
         for i in range(len(id)):
             print id[i][0]
-            print id[i][1]     
-   
-        
-
+            print id[i][1]
+            
+            
 if __name__ == '__main__':
     main()
+
+
 
 
 
