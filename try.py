@@ -46,12 +46,13 @@ def main():
     topk=[]
     # firstly, get 50 elements out of the dict
     for id in idlist:
+        idnum=idlist.index(id)
         temp=[]
         for i in range(0,50):
-            temp.append(scorelist[id][i])
+            temp.append(scorelist[idnum][i])
         temp1=sorted(temp.iteritems(),key=operator.itemgetter(1),reverse=True)
-        for j in range(51,len(scorelist[id])):
-            tetdict=scorelist[id][j]
+        for j in range(51,len(scorelist[idnum])):
+            tetdict=scorelist[idnum][j]
             tet=tetdict.values()[0]
             if tet>temp1[0][1]:
                 temp1.insert(0, (tetdict['name'],tetdict['score']))
@@ -69,23 +70,12 @@ def main():
     for id in topk:
         for i in range(len(id)):
             print id[i][0]
-            print id[i][1]
-            
-            
-        
-        
-    
-    # then made some choices between the names of the figures.
-    
-        
-    
-    
-    
-    
+            print id[i][1]     
    
         
 
 if __name__ == '__main__':
     main()
+
 
 
