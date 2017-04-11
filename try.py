@@ -30,7 +30,8 @@ def main():
         scorfo=float(scoresplit[1])
         
         temp1={}
-        temp1['name']=prop            
+        #temp1['name']=prop 
+        temp1['name']=infoline.strip()           
         temp1['score']=scorfo
         
         if info not in idlist:
@@ -39,11 +40,8 @@ def main():
           
         else:
             tid=idlist.index(info)            
-            scorelist[tid].append(temp1)             
-                
-    #print idlist  
-    #print scorelist
-    #print "the largest two elements of each id "    
+            scorelist[tid].append(temp1)               
+     
     
     topk=[]
     for id in idlist:
@@ -72,3 +70,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
