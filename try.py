@@ -30,11 +30,7 @@ def main():
         scoresplit=scoreline.strip().split(' ')
         scorfo=float(scoresplit[1])
         
-        temp1=()
-        #temp1['name']=prop.split('_')[0] 
-        #temp1['name']=infoline.strip()           
-        temp1[0]=infoline.strip() 
-        temp1[1]=scorfo
+        temp1=(infoline.strip(),scorfo)        
         
         if info not in idlist:
             idlist.append(info)
